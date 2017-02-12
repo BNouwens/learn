@@ -12,6 +12,9 @@
     },
     "ControlledASubnetCidrBlock": {
       "Type": "String"
+    },
+    "ControlledBSubnetCidrBlock": {
+      "Type": "String"
     }
   },
   "Resources": {
@@ -62,6 +65,34 @@
                     "Ref": "Name"
                   },
                   "Controlled A Subnet"
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "ControlledBSubnet": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "VpcId": {
+          "Ref": "VPC"
+        },
+        "CidrBlock": {
+          "Ref": "ControlledBSubnetCidrBlock"
+        },
+        "AvailabilityZone": "ap-southeast-2b",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join": [
+                " ",
+                [
+                  {
+                    "Ref": "Name"
+                  },
+                  "Controlled B Subnet"
                 ]
               ]
             }
